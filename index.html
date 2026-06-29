@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f0b07">
+<title>Jesus in Serbien — Das Bild Christi in der serbisch-orthodoxen Welt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Marcellus+SC&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f0b07; --ink-2:#171009; --ink-3:#211710; --ink-4:#2c2014;
+  --gold:#d7af43; --gold-bright:#f0d27a; --gold-pale:#f6ecca;
+  --lapis:#2b4f8e; --lapis-bright:#5a83c9;
+  --sienna:#b46c3c; --red:#a52e25;
+  --bone:#f1e8d4; --bone-dim:#cab999; --muted:#90805f;
+  --line:rgba(215,175,67,.22); --line-strong:rgba(215,175,67,.4);
+  --display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --label:'Marcellus SC','Cormorant Garamond',serif;
+  --body:'Spectral',Georgia,serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--body); color:var(--bone); background:var(--ink);
+  overflow:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  position:relative;
+}
+/* candle-lit gilded atmosphere */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(215,175,67,.10), transparent 55%),
+    radial-gradient(90% 70% at 80% 110%, rgba(43,79,142,.16), transparent 60%),
+    radial-gradient(70% 60% at 10% 100%, rgba(165,46,37,.10), transparent 60%),
+    linear-gradient(180deg,#120c07,#0c0805 70%);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background:radial-gradient(140% 120% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%);
+}
+
+/* ---------- deck / slides ---------- */
+.deck{position:fixed; inset:0; z-index:1}
+.slide{
+  position:absolute; inset:0; opacity:0; visibility:hidden;
+  display:flex; flex-direction:column; align-items:center;
+  padding:clamp(22px,5vw,90px); overflow-y:auto; overflow-x:hidden;
+  transition:opacity .7s var(--ease), visibility .7s var(--ease);
+  -webkit-overflow-scrolling:touch;
+}
+.slide.active{opacity:1; visibility:visible}
+.slide.prev{transform:translateX(-3%)}
+.wrap{width:100%; max-width:1180px; margin:auto}
+
+/* staggered reveal */
+[data-reveal]{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.slide.active [data-reveal]{opacity:1; transform:none}
+.slide.active [data-reveal]{transition-delay:calc(var(--d,0)*1ms)}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:var(--label); letter-spacing:.32em; text-transform:uppercase;
+  font-size:clamp(11px,1.15vw,14px); color:var(--gold); margin-bottom:1.1em;
+  display:flex; align-items:center; gap:.9em;
+}
+.eyebrow::before{content:""; width:34px; height:1px; background:linear-gradient(90deg,var(--gold),transparent)}
+.eyebrow .gk{font-family:var(--body); letter-spacing:.05em; color:var(--bone-dim); opacity:.8}
+h1{font-family:var(--display); font-weight:600; line-height:.95; letter-spacing:-.01em;
+  font-size:clamp(54px,11vw,150px); color:var(--bone)}
+h2{font-family:var(--display); font-weight:600; line-height:1.0;
+  font-size:clamp(34px,6.2vw,76px); color:var(--bone); letter-spacing:-.005em}
+h3{font-family:var(--display); font-weight:600; font-size:clamp(21px,2.6vw,30px); color:var(--gold-pale); line-height:1.15}
+.lead{font-size:clamp(16px,1.9vw,22px); line-height:1.6; color:var(--bone-dim); max-width:62ch; font-weight:300}
+p.body{font-size:clamp(15px,1.55vw,18.5px); line-height:1.72; color:var(--bone-dim); max-width:60ch; font-weight:300}
+.gold{color:var(--gold-bright)} .em{color:var(--bone); font-style:italic}
+.sr{color:var(--bone)}
+
+/* ---------- title slide ---------- */
+.title-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(20px,4vw,60px); align-items:center}
+.title-sub{margin-top:1.4em; max-width:48ch}
+.title-foot{margin-top:2.6em; display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+.btn{
+  font-family:var(--label); letter-spacing:.18em; text-transform:uppercase; font-size:13px;
+  color:var(--ink); background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  border:none; padding:14px 26px; border-radius:2px; cursor:pointer;
+  box-shadow:0 6px 24px rgba(215,175,67,.22); transition:transform .25s var(--ease), box-shadow .25s var(--ease)}
+.btn:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(215,175,67,.34)}
+.btn:focus-visible{outline:2px solid var(--gold-pale); outline-offset:3px}
+.hint{font-size:13px; color:var(--muted); font-style:italic; letter-spacing:.02em}
+.hint b{color:var(--bone-dim); font-style:normal}
+
+/* halo / nimbus art */
+.nimbus{position:relative; aspect-ratio:1/1; width:min(46vh,440px); margin:0 auto; display:grid; place-items:center}
+.nimbus svg{width:100%; height:100%; overflow:visible}
+.rays{transform-origin:center; animation:spin 80s linear infinite}
+.glow{transform-origin:center; animation:pulse 6s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.5} 50%{opacity:.95}}
+
+/* ---------- chips / stats ---------- */
+.chips{display:flex; gap:14px; flex-wrap:wrap; margin-top:2em}
+.chip{border:1px solid var(--line); border-radius:2px; padding:12px 16px; background:rgba(33,23,16,.5); backdrop-filter:blur(2px)}
+.chip .n{font-family:var(--display); font-size:clamp(22px,3vw,30px); color:var(--gold-bright); line-height:1; font-weight:600}
+.chip .l{font-size:12.5px; color:var(--bone-dim); margin-top:6px; letter-spacing:.02em}
+
+/* ---------- timeline ---------- */
+.tl{margin-top:2.2em; border-left:1px solid var(--line); padding-left:0}
+.tl-item{position:relative; padding:14px 0 14px 34px; cursor:pointer; border-bottom:1px solid rgba(215,175,67,.08); transition:background .3s}
+.tl-item:last-child{border-bottom:none}
+.tl-item::before{content:""; position:absolute; left:-6px; top:22px; width:11px; height:11px; border-radius:50%;
+  background:var(--ink); border:2px solid var(--gold); transition:all .3s var(--ease)}
+.tl-item:hover::before, .tl-item.open::before{background:var(--gold-bright); box-shadow:0 0 14px rgba(240,210,122,.6)}
+.tl-row{display:flex; gap:18px; align-items:baseline; flex-wrap:wrap}
+.tl-year{font-family:var(--display); font-weight:600; color:var(--gold); font-size:clamp(19px,2.4vw,26px); min-width:130px}
+.tl-title{font-size:clamp(15px,1.7vw,18px); color:var(--bone)}
+.tl-detail{max-height:0; overflow:hidden; opacity:0; transition:max-height .5s var(--ease), opacity .4s var(--ease), margin .4s}
+.tl-item.open .tl-detail{max-height:160px; opacity:1; margin-top:8px}
+.tl-detail p{font-size:14.5px; color:var(--bone-dim); line-height:1.6; font-weight:300; max-width:70ch}
+
+/* ---------- generic two-column with framed image ---------- */
+.split{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(24px,4vw,64px); align-items:center}
+.split.rev{grid-template-columns:.85fr 1.15fr}
+.frame{position:relative; border-radius:200px 200px 8px 8px; overflow:hidden; isolation:isolate;
+  border:1px solid var(--line-strong); box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 0 0 6px rgba(15,11,7,.6);
+  background:linear-gradient(160deg,#23170f,#140d08)}
+.frame::after{content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 60px rgba(0,0,0,.5);
+  background:linear-gradient(180deg,transparent 60%, rgba(0,0,0,.45))}
+.frame img{display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:3/4; transition:transform 8s var(--ease)}
+.slide.active .frame img{transform:scale(1.04)}
+.frame .cap{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:18px 18px 16px;
+  font-size:12.5px; color:var(--gold-pale); letter-spacing:.02em; font-style:italic}
+.frame .cap b{font-style:normal; color:var(--bone); letter-spacing:0}
+.frame.flat{border-radius:8px}
+.frame.flat img{aspect-ratio:4/3}
+/* image fallback */
+.frame .fallback{position:absolute; inset:0; display:none; place-items:center; z-index:1; padding:24px; text-align:center;
+  background:radial-gradient(circle at 50% 35%, rgba(215,175,67,.14), transparent 60%), linear-gradient(160deg,#22160e,#120c07)}
+.frame.img-failed img{display:none}
+.frame.img-failed .fallback{display:grid}
+.fallback .gly{width:64px; height:64px; opacity:.8; margin-bottom:14px}
+.fallback small{display:block; color:var(--muted); font-size:12px; margin-top:10px; max-width:30ch}
+
+/* ---------- icon-reading (interactive) ---------- */
+.read-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(22px,4vw,56px); align-items:center}
+.diagram{position:relative; width:100%; max-width:430px; margin:0 auto}
+.diagram svg{width:100%; height:auto; overflow:visible}
+.hotspot{cursor:pointer; outline:none}
+.hotspot .dot{fill:var(--gold); stroke:var(--ink); stroke-width:2; transition:r .25s var(--ease), fill .25s}
+.hotspot .ring{fill:none; stroke:var(--gold-bright); stroke-width:1.5; opacity:0; transform-origin:center}
+.hotspot:hover .dot,.hotspot.on .dot{fill:var(--gold-bright); r:11}
+.hotspot:hover .ring,.hotspot.on .ring{opacity:.9; animation:ring 1.6s ease-out infinite}
+.hotspot .num{fill:var(--ink); font-family:var(--label); font-size:12px; pointer-events:none}
+@keyframes ring{0%{r:9;opacity:.9} 100%{r:26;opacity:0}}
+.read-panel{min-height:230px; display:flex; flex-direction:column; justify-content:center}
+.read-panel .pick{color:var(--muted); font-style:italic; font-size:15px}
+.read-card{display:none} .read-card.on{display:block; animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+.read-card .k{font-family:var(--label); color:var(--gold); letter-spacing:.14em; text-transform:uppercase; font-size:12.5px}
+.read-card h3{margin:.35em 0 .4em}
+.read-card p{font-size:16px; line-height:1.65; color:var(--bone-dim); font-weight:300; max-width:46ch}
+
+/* ---------- monastery explorer ---------- */
+.mono-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:1.6em}
+.mcard{position:relative; text-align:left; cursor:pointer; padding:18px 16px; border:1px solid var(--line);
+  background:linear-gradient(165deg,rgba(36,24,15,.7),rgba(18,12,8,.7)); border-radius:4px;
+  transition:border-color .3s, transform .3s var(--ease), background .3s; color:inherit; font-family:inherit}
+.mcard:hover{transform:translateY(-3px); border-color:var(--line-strong)}
+.mcard.on{border-color:var(--gold); background:linear-gradient(165deg,rgba(48,32,18,.85),rgba(24,16,10,.85))}
+.mcard .mx{font-family:var(--display); font-size:clamp(19px,2.3vw,25px); color:var(--gold-pale); line-height:1.05}
+.mcard .my{font-size:12.5px; color:var(--muted); margin-top:5px; letter-spacing:.03em}
+.mcross{position:absolute; top:14px; right:14px; opacity:.5}
+.mdetail{margin-top:18px; border:1px solid var(--line); border-radius:6px; overflow:hidden;
+  background:linear-gradient(160deg,rgba(33,23,16,.6),rgba(15,11,7,.7)); min-height:120px}
+.mdetail-inner{display:grid; grid-template-columns:300px 1fr; gap:0; align-items:stretch}
+.mdetail .mimg{position:relative; min-height:200px; background:linear-gradient(160deg,#22160e,#120c07); overflow:hidden}
+.mdetail .mimg img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0}
+.mdetail .mimg .fb{position:absolute; inset:0; display:grid; place-items:center}
+.mdetail .mtext{padding:22px 26px}
+.mdetail .mtext .k{font-family:var(--label); letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-size:12px}
+.mdetail .mtext h3{margin:.3em 0 .5em}
+.mdetail .mtext p{font-size:15px; line-height:1.62; color:var(--bone-dim); font-weight:300; max-width:60ch}
+.mtag{display:inline-block; margin-top:12px; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--lapis-bright); border:1px solid rgba(90,131,201,.4); padding:5px 10px; border-radius:2px}
+
+/* ---------- fresco gallery ---------- */
+.gal{display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3.5vw,44px); margin-top:1.6em; align-items:start}
+.gal .frame img{aspect-ratio:4/3}
+.gal .note{font-size:15px; line-height:1.6; color:var(--bone-dim); font-weight:300; margin-top:14px; max-width:48ch}
+.galfoot{margin-top:1.8em; padding-top:1.4em; border-top:1px solid var(--line)}
+
+/* ---------- temple wow ---------- */
+.temple-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,3vw,40px); margin-top:1.4em; align-items:stretch}
+.temple-grid .frame{border-radius:8px}
+.temple-grid .frame img{aspect-ratio:4/3; height:100%}
+
+/* ---------- life / feasts ---------- */
+.feasts{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:1.8em}
+.feast{border:1px solid var(--line); border-radius:6px; padding:24px 22px; background:linear-gradient(165deg,rgba(33,23,16,.6),rgba(15,11,7,.6)); position:relative}
+.feast h3{margin-bottom:.4em} .feast p{font-size:14.5px; line-height:1.6; color:var(--bone-dim); font-weight:300}
+.greet{margin-top:14px; font-family:var(--display); font-size:20px; color:var(--gold-pale)}
+.reveal-btn{margin-top:14px; font-family:var(--label); letter-spacing:.12em; text-transform:uppercase; font-size:11.5px;
+  background:transparent; color:var(--gold); border:1px solid var(--line-strong); padding:9px 14px; border-radius:2px; cursor:pointer; transition:.25s}
+.reveal-btn:hover{background:rgba(215,175,67,.1)}
+.answer{max-height:0; overflow:hidden; opacity:0; transition:max-height .5s var(--ease), opacity .4s, margin .4s}
+.feast.revealed .answer{max-height:120px; opacity:1; margin-top:12px}
+.feast.revealed .reveal-btn{display:none}
+.answer .a{font-family:var(--display); font-size:20px; color:var(--gold-bright)}
+.answer .t{font-size:13px; color:var(--muted); font-style:italic; margin-top:4px}
+
+/* ---------- closing ---------- */
+.close-wrap{text-align:center; max-width:760px; margin:auto}
+.close-wrap .lead{margin:1.4em auto 0}
+.hvala{font-family:var(--display); font-size:clamp(40px,8vw,84px); color:var(--gold-bright); margin-top:.5em; font-weight:500; letter-spacing:.02em}
+.close-note{margin-top:1.6em; font-size:13.5px; color:var(--muted); font-style:italic}
+
+/* ---------- chrome: nav, progress, counter ---------- */
+.progress{position:fixed; top:0; left:0; height:3px; z-index:40; width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright)); box-shadow:0 0 12px rgba(240,210,122,.5); transition:width .6s var(--ease)}
+.chrome{position:fixed; z-index:30; bottom:max(18px,env(safe-area-inset-bottom)); left:0; right:0;
+  display:flex; align-items:center; justify-content:center; gap:18px; pointer-events:none}
+.chrome>*{pointer-events:auto}
+.nav-btn{width:46px; height:46px; border-radius:50%; border:1px solid var(--line-strong);
+  background:rgba(15,11,7,.7); color:var(--gold); cursor:pointer; display:grid; place-items:center;
+  backdrop-filter:blur(6px); transition:.25s var(--ease)}
+.nav-btn:hover{background:rgba(215,175,67,.14); border-color:var(--gold); color:var(--gold-bright)}
+.nav-btn:focus-visible{outline:2px solid var(--gold-pale); outline-offset:2px}
+.nav-btn:disabled{opacity:.3; cursor:default}
+.nav-btn svg{width:18px; height:18px}
+.counter{font-family:var(--label); letter-spacing:.16em; font-size:13px; color:var(--bone-dim);
+  background:rgba(15,11,7,.6); padding:11px 16px; border-radius:30px; border:1px solid var(--line); backdrop-filter:blur(6px); min-width:74px; text-align:center}
+.counter b{color:var(--gold-bright)}
+.dots{position:fixed; right:max(16px,env(safe-area-inset-right)); top:50%; transform:translateY(-50%); z-index:30;
+  display:flex; flex-direction:column; gap:11px}
+.dot{width:9px; height:9px; border-radius:50%; border:1px solid var(--line-strong); background:transparent; cursor:pointer; padding:0; transition:.25s var(--ease)}
+.dot:hover{border-color:var(--gold)} .dot.on{background:var(--gold-bright); border-color:var(--gold-bright); box-shadow:0 0 10px rgba(240,210,122,.6)}
+.top-tag{position:fixed; top:18px; left:max(18px,env(safe-area-inset-left)); z-index:30;
+  font-family:var(--label); letter-spacing:.2em; text-transform:uppercase; font-size:11px; color:var(--muted)}
+.top-tag b{color:var(--gold)}
+.grid-btn{position:fixed; top:14px; right:max(16px,env(safe-area-inset-right)); z-index:31;
+  width:42px; height:42px; border-radius:8px; border:1px solid var(--line-strong); background:rgba(15,11,7,.7);
+  color:var(--gold); cursor:pointer; display:grid; place-items:center; backdrop-filter:blur(6px); transition:.25s}
+.grid-btn:hover{background:rgba(215,175,67,.12); color:var(--gold-bright)}
+
+/* overview overlay */
+.overview{position:fixed; inset:0; z-index:60; background:rgba(8,5,3,.96); backdrop-filter:blur(8px);
+  display:none; padding:clamp(30px,6vw,80px); overflow-y:auto}
+.overview.show{display:block; animation:fade .4s var(--ease)}
+.ov-head{font-family:var(--display); font-size:clamp(26px,4vw,44px); color:var(--gold-pale); margin-bottom:.7em}
+.ov-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px}
+.ov-card{text-align:left; cursor:pointer; padding:20px 18px; border:1px solid var(--line); border-radius:6px;
+  background:linear-gradient(165deg,rgba(33,23,16,.7),rgba(15,11,7,.7)); color:inherit; font-family:inherit; transition:.25s var(--ease)}
+.ov-card:hover{border-color:var(--gold); transform:translateY(-3px)}
+.ov-card .ov-n{font-family:var(--label); color:var(--gold); font-size:13px; letter-spacing:.1em}
+.ov-card .ov-t{font-family:var(--display); font-size:21px; color:var(--bone); margin-top:8px; line-height:1.1}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .title-grid{grid-template-columns:1fr; gap:18px; text-align:left}
+  .nimbus{width:min(40vh,300px); order:-1}
+  .split,.split.rev,.read-grid,.temple-grid,.gal{grid-template-columns:1fr; gap:24px}
+  .split .frame,.split.rev .frame{max-width:380px; margin:0 auto}
+  .mono-grid,.feasts{grid-template-columns:1fr 1fr}
+  .mdetail-inner{grid-template-columns:1fr}
+  .mdetail .mimg{min-height:180px}
+  .dots{display:none}
+  .diagram{max-width:330px}
+}
+@media (max-width:560px){
+  .mono-grid,.feasts{grid-template-columns:1fr}
+  .chips{gap:10px} .chip{flex:1 1 40%}
+  .tl-year{min-width:auto}
+  .slide{padding:64px 20px 96px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition-duration:.001ms!important}
+  [data-reveal]{opacity:1!important; transform:none!important}
+  .slide.active .frame img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="top-tag">ΙϹ ΧϹ · <b>Jesus in Serbien</b></div>
+<button class="grid-btn" id="gridBtn" aria-label="Übersicht aller Folien" title="Übersicht (G)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+</button>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide" data-title="Titel">
+    <div class="wrap title-grid">
+      <div>
+        <div class="eyebrow" data-reveal style="--d:100">Eine illustrierte Präsentation <span class="gk">· Христос</span></div>
+        <h1 data-reveal style="--d:200">Jesus<br>in Serbien</h1>
+        <p class="lead title-sub" data-reveal style="--d:450">Das Bild Christi in der serbisch-orthodoxen Welt — von den blauen Fresken mittelalterlicher Klöster bis zur goldenen Kuppel über Belgrad.</p>
+        <div class="title-foot" data-reveal style="--d:650">
+          <button class="btn" id="startBtn">Beginnen</button>
+          <span class="hint"><b>←  →</b> zum Blättern · auf dem Handy wischen</span>
+        </div>
+      </div>
+      <div class="nimbus" data-reveal style="--d:350" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f6ecca" stop-opacity=".9"/>
+              <stop offset="40%" stop-color="#d7af43" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#d7af43" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f0d27a"/><stop offset="100%" stop-color="#b9892b"/>
+            </linearGradient>
+          </defs>
+          <circle class="glow" cx="200" cy="200" r="180" fill="url(#halo)"/>
+          <g class="rays" stroke="url(#ring)" stroke-width="1.4" opacity=".55">
+            <!-- aureole rays -->
+            <g id="rayset"></g>
+          </g>
+          <circle cx="200" cy="200" r="118" fill="none" stroke="url(#ring)" stroke-width="2.4"/>
+          <circle cx="200" cy="200" r="108" fill="none" stroke="var(--gold)" stroke-width=".8" opacity=".6"/>
+          <!-- cross-nimbus -->
+          <g stroke="url(#ring)" stroke-width="7" stroke-linecap="round" opacity=".95">
+            <line x1="200" y1="92" x2="200" y2="308"/>
+            <line x1="92" y1="200" x2="308" y2="200"/>
+          </g>
+          <!-- cross-arm letters: Ο Ω Ν -->
+          <g fill="#f6ecca" font-family="var(--display)" font-size="26" text-anchor="middle" font-weight="600">
+            <text x="200" y="125">Ο</text>
+            <text x="118" y="210">Ω</text>
+            <text x="282" y="210">Ν</text>
+          </g>
+          <!-- IC XC monograms -->
+          <g fill="#d7af43" font-family="var(--label)" font-size="22" text-anchor="middle" letter-spacing="1">
+            <text x="118" y="100">IC</text>
+            <text x="300" y="100">XC</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · INTRO -->
+  <section class="slide" data-title="Worum es geht">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Einführung</div>
+      <h2 data-reveal style="--d:120">Worum es hier geht</h2>
+      <p class="body" data-reveal style="--d:260; margin-top:1em">Serbien ist seit dem Mittelalter ein orthodox-christliches Land — heute bekennen sich rund <span class="gold">85 %</span> der Bevölkerung zum orthodoxen Glauben. In dessen Mitte steht das Bild Christi: gemalt auf Klosterwände, gelegt in goldene Mosaike, besungen in Liturgie und Festen.</p>
+      <p class="body" data-reveal style="--d:380; margin-top:1em">„Jesus in Serbien" erzählt, wie aus diesem einen Bild über mehr als acht Jahrhunderte ein Stück nationaler Identität, Weltkunst und gelebter Frömmigkeit wurde — von <span class="em">Sveti Sava</span> bis zum monumentalen Tempel auf dem Vračar.</p>
+      <div class="chips" data-reveal style="--d:520">
+        <div class="chip"><div class="n">~85 %</div><div class="l">orthodoxe Christen</div></div>
+        <div class="chip"><div class="n">1219</div><div class="l">eigenständige Kirche</div></div>
+        <div class="chip"><div class="n">5</div><div class="l">UNESCO-Welterbe-Stätten</div></div>
+        <div class="chip"><div class="n">800+</div><div class="l">Jahre Christusbilder</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · TIMELINE -->
+  <section class="slide" data-title="Zeitleiste">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Zeitleiste</div>
+      <h2 data-reveal style="--d:120">800 Jahre auf einen Blick</h2>
+      <p class="lead" data-reveal style="--d:240; margin-top:.6em; font-size:16px">Tippe auf einen Eintrag, um mehr zu erfahren.</p>
+      <div class="tl" data-reveal style="--d:360" id="timeline">
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">9. Jh.</span><span class="tl-title">Christianisierung der Serben im byzantinischen Einflussraum</span></div><div class="tl-detail"><p>Im Zuge der Mission der Slawen durch die Schüler von Kyrill und Method nehmen die serbischen Stämme das östliche Christentum an — geprägt von Konstantinopel.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">um 1190</span><span class="tl-title">Stefan Nemanja gründet das Kloster Studenica</span></div><div class="tl-detail"><p>Der Begründer der Nemanjić-Dynastie legt den Grundstein für die serbische Klosterkultur. Studenica wird zum „Mutterkloster" und Vorbild aller späteren Gründungen.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">1219</span><span class="tl-title">Sveti Sava erwirkt die Autokephalie der Kirche</span></div><div class="tl-detail"><p>Sava wird erster Erzbischof der nun unabhängigen (autokephalen) serbischen Kirche. Sitz ist das Kloster Žiča, in dem fortan serbische Könige gekrönt werden.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">13.–14. Jh.</span><span class="tl-title">Blütezeit der Freskenmalerei</span></div><div class="tl-detail"><p>In Mileševa, Sopoćani, Visoki Dečani und Gračanica entstehen Wandmalereien von europäischem Rang — vielfach von unbekannten Meistern, die byzantinische Tradition zur Vollendung führen.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">1459–19. Jh.</span><span class="tl-title">Osmanische Herrschaft — Klöster als Hüter des Glaubens</span></div><div class="tl-detail"><p>Nach dem Fall des serbischen Reiches bewahren die Klöster Sprache, Schrift und das Christusbild über Jahrhunderte fremder Herrschaft hinweg.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">1594</span><span class="tl-title">Sava's Reliquien werden auf dem Vračar verbrannt</span></div><div class="tl-detail"><p>Sinan Pascha lässt die Gebeine des Heiligen Sava öffentlich verbrennen, um den Widerstand zu brechen — der Ort wird später zum Bauplatz des größten serbischen Gotteshauses.</p></div></div>
+        <div class="tl-item"><div class="tl-row"><span class="tl-year">1935–2020</span><span class="tl-title">Bau und Vollendung des Hram Svetog Save</span></div><div class="tl-detail"><p>Über Kriege und politische Umbrüche hinweg entsteht in Belgrad eine der größten orthodoxen Kirchen der Welt. Die gewaltigen Innenmosaike werden erst 2020 fertiggestellt.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · SVETI SAVA -->
+  <section class="slide" data-title="Sveti Sava">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow" data-reveal>Der Begründer</div>
+        <h2 data-reveal style="--d:120">Sveti Sava</h2>
+        <p class="body" data-reveal style="--d:260; margin-top:1em">Geboren als Prinz <span class="em">Rastko Nemanjić</span> (um 1174), gab er Krone und Reichtum auf, floh als Jugendlicher heimlich auf den Heiligen Berg <span class="gold">Athos</span> und wurde Mönch. Mit seinem Vater gründete er dort das serbische Kloster Hilandar.</p>
+        <p class="body" data-reveal style="--d:380; margin-top:1em">1219 wurde Sava der erste Erzbischof der unabhängigen serbischen Kirche — und damit der Architekt eines christozentrischen Glaubens, der das Land bis heute prägt. Er verfasste Gesetze, gründete Schulen und gilt als <span class="gold">Schutzpatron der Schüler und Studenten</span>.</p>
+      </div>
+      <div class="frame" data-reveal style="--d:300">
+        <img src="assets/03-pantokrator-hilandar.jpg" alt="Ikone des Christus Pantokrator aus dem Kloster Hilandar, 13. Jahrhundert" loading="lazy" referrerpolicy="no-referrer">
+        <div class="fallback"><svg class="gly" viewBox="0 0 24 24" fill="none" stroke="#d7af43" stroke-width="1.2"><circle cx="12" cy="9" r="6"/><path d="M12 3v12M6 9h12"/></svg><span class="gk" style="color:var(--gold-pale); font-family:var(--display); font-size:22px">Christus Pantokrator</span><small>Ikone, Kloster Hilandar, 13. Jh.</small></div>
+        <div class="cap"><b>Christus Pantokrator</b> · Ikone aus dem Kloster Hilandar (13. Jh.) — gegründet von Sava und seinem Vater auf dem Athos.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · PANTOKRATOR (interactive icon reading) -->
+  <section class="slide" data-title="Eine Ikone lesen">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Eine Ikone lesen</div>
+      <h2 data-reveal style="--d:120">Christus Pantokrator</h2>
+      <p class="lead" data-reveal style="--d:220; margin-top:.5em; font-size:16.5px">Aus der höchsten Kuppel blickt Christus als <span class="gold">Pantokrator</span> („Allherrscher") herab. Jede Linie trägt Bedeutung. Tippe auf die goldenen Punkte.</p>
+      <div class="read-grid" data-reveal style="--d:360; margin-top:1.4em">
+        <div class="diagram">
+          <svg viewBox="0 0 400 420" role="img" aria-label="Schematische Darstellung einer Christus-Pantokrator-Ikone mit beschrifteten Elementen">
+            <!-- nimbus -->
+            <circle cx="200" cy="150" r="120" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+            <g stroke="var(--gold)" stroke-width="6" stroke-linecap="round" opacity=".85">
+              <line x1="200" y1="50" x2="200" y2="250"/><line x1="100" y1="150" x2="300" y2="150"/>
+            </g>
+            <g fill="var(--gold-pale)" font-family="var(--display)" font-size="22" text-anchor="middle" font-weight="600">
+              <text x="200" y="82">Ο</text><text x="118" y="158">Ω</text><text x="282" y="158">Ν</text>
+            </g>
+            <!-- head + shoulders (schematic) -->
+            <path d="M200 95 q34 0 34 44 q0 50 -34 64 q-34 -14 -34 -64 q0 -44 34 -44Z" fill="#2c2014" stroke="var(--sienna)" stroke-width="1.4"/>
+            <path d="M120 300 q0 -70 80 -86 q80 16 80 86 v60 h-160Z" fill="#23170f" stroke="var(--sienna)" stroke-width="1.4"/>
+            <path d="M200 214 v140" stroke="var(--red)" stroke-width="2" opacity=".6"/>
+            <!-- gospel book -->
+            <rect x="226" y="262" width="58" height="74" rx="3" fill="#3a1714" stroke="var(--gold)" stroke-width="2" transform="rotate(8 255 299)"/>
+            <g transform="rotate(8 255 299)" stroke="var(--gold-bright)" stroke-width="2"><line x1="255" y1="276" x2="255" y2="322"/><line x1="240" y1="299" x2="270" y2="299"/></g>
+            <!-- blessing hand (schematic) -->
+            <g transform="translate(120 250)" fill="none" stroke="var(--gold-pale)" stroke-width="2.4" stroke-linecap="round">
+              <path d="M2 40 q-2 -34 8 -40"/><path d="M12 38 V2"/><path d="M22 40 q4 -22 -2 -34"/><path d="M30 44 q8 -14 2 -24"/>
+            </g>
+            <!-- IC XC -->
+            <g fill="var(--gold)" font-family="var(--label)" font-size="20" text-anchor="middle"><text x="92" y="60">IC</text><text x="312" y="60">XC</text></g>
+
+            <!-- HOTSPOTS -->
+            <g class="hotspot" data-key="nimbus" tabindex="0" role="button" aria-label="Kreuznimbus"><circle class="ring" cx="200" cy="55" r="9"/><circle class="dot" cx="200" cy="55" r="9"/><text class="num" x="200" y="59" text-anchor="middle">1</text></g>
+            <g class="hotspot" data-key="oon" tabindex="0" role="button" aria-label="Buchstaben im Kreuz"><circle class="ring" cx="118" cy="153" r="9"/><circle class="dot" cx="118" cy="153" r="9"/><text class="num" x="118" y="157" text-anchor="middle">2</text></g>
+            <g class="hotspot" data-key="icxc" tabindex="0" role="button" aria-label="Monogramm IC XC"><circle class="ring" cx="312" cy="55" r="9"/><circle class="dot" cx="312" cy="55" r="9"/><text class="num" x="312" y="59" text-anchor="middle">3</text></g>
+            <g class="hotspot" data-key="hand" tabindex="0" role="button" aria-label="Segnende Hand"><circle class="ring" cx="132" cy="276" r="9"/><circle class="dot" cx="132" cy="276" r="9"/><text class="num" x="132" y="280" text-anchor="middle">4</text></g>
+            <g class="hotspot" data-key="book" tabindex="0" role="button" aria-label="Evangelienbuch"><circle class="ring" cx="276" cy="300" r="9"/><circle class="dot" cx="276" cy="300" r="9"/><text class="num" x="276" y="304" text-anchor="middle">5</text></g>
+          </svg>
+        </div>
+        <div class="read-panel" id="readPanel">
+          <p class="pick" id="readPick">▸ Wähle ein Symbol auf der Ikone …</p>
+          <div class="read-card" data-key="nimbus"><div class="k">1 · Kreuznimbus</div><h3>Der Heiligenschein mit Kreuz</h3><p>Ein Nimbus mit eingeschriebenem Kreuz ist allein Christus vorbehalten. Er zeigt seine Göttlichkeit und das Licht der Ewigkeit.</p></div>
+          <div class="read-card" data-key="oon"><div class="k">2 · Ο Ω Ν</div><h3>„Der Seiende"</h3><p>Die drei griechischen Buchstaben in den Kreuzbalken bilden <span class="em">ho ōn</span> — „der Seiende". Es ist der Gottesname, mit dem sich Gott Mose im brennenden Dornbusch offenbart (2. Mose 3,14).</p></div>
+          <div class="read-card" data-key="icxc"><div class="k">3 · IC XC</div><h3>Das Christus-Monogramm</h3><p>Die Kürzel stehen für <span class="em">Iēsoús Christós</span> — Jesus Christus. Erster und letzter Buchstabe der beiden griechischen Wörter rahmen so stets sein Bild ein.</p></div>
+          <div class="read-card" data-key="hand"><div class="k">4 · Segensgestus</div><h3>Die segnende Hand</h3><p>Die rechte Hand ist zum Segen erhoben; die Finger formen selbst die Buchstaben IC XC. Christus wendet sich segnend dem Betrachter zu.</p></div>
+          <div class="read-card" data-key="book"><div class="k">5 · Evangelienbuch</div><h3>Das Wort in seiner Hand</h3><p>In der Linken hält Christus das Evangelium — Zeichen, dass er Lehrer und Richter ist. Oft ist es kostbar mit Gold und Edelsteinen geschmückt.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · MONASTERIES (interactive) -->
+  <section class="slide" data-title="Die Klöster">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Schatzkammern des Glaubens</div>
+      <h2 data-reveal style="--d:120">Die Klöster</h2>
+      <p class="lead" data-reveal style="--d:220; margin-top:.5em; font-size:16px">Sechs Orte, an denen das Bild Christi Geschichte schrieb. Wähle ein Kloster.</p>
+      <div class="mono-grid" data-reveal style="--d:360" id="monoGrid">
+        <button class="mcard on" data-id="studenica"><div class="mx">Studenica</div><div class="my">um 1190 · Stefan Nemanja</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+        <button class="mcard" data-id="mileseva"><div class="mx">Mileševa</div><div class="my">um 1235 · König Vladislav</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+        <button class="mcard" data-id="sopocani"><div class="mx">Sopoćani</div><div class="my">um 1265 · König Uroš I.</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+        <button class="mcard" data-id="decani"><div class="mx">Visoki Dečani</div><div class="my">1327–1335 · Stefan Dečanski</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+        <button class="mcard" data-id="zica"><div class="mx">Žiča</div><div class="my">frühes 13. Jh. · Stefan d. Erstgekrönte</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+        <button class="mcard" data-id="gracanica"><div class="mx">Gračanica</div><div class="my">um 1321 · König Milutin</div><span class="mcross"><svg width="14" height="18" viewBox="0 0 14 18" stroke="var(--gold)" stroke-width="1.4"><line x1="7" y1="1" x2="7" y2="17"/><line x1="2" y1="6" x2="12" y2="6"/></svg></span></button>
+      </div>
+      <div class="mdetail" data-reveal style="--d:480">
+        <div class="mdetail-inner">
+          <div class="mimg" id="monoImg">
+            <div class="fb" style="display:grid; place-items:center"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9a7d3a" stroke-width="1"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+          </div>
+          <div class="mtext" id="monoText"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · FRESCO GALLERY -->
+  <section class="slide" data-title="Meisterwerke">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Meisterwerke</div>
+      <h2 data-reveal style="--d:120">Christus an der Wand</h2>
+      <div class="gal" data-reveal style="--d:300">
+        <div>
+          <div class="frame flat">
+            <img src="assets/01-weisser-engel.jpg" alt="Fresko Weißer Engel im Kloster Mileševa" loading="lazy" referrerpolicy="no-referrer">
+            <div class="fallback"><svg class="gly" viewBox="0 0 24 24" fill="none" stroke="#d7af43" stroke-width="1"><path d="M12 2l2 7h7l-6 4 2 7-5-4-5 4 2-7-6-4h7z"/></svg><span style="color:var(--gold-pale); font-family:var(--display); font-size:21px">Der Weiße Engel</span><small>Mileševa, um 1235</small></div>
+            <div class="cap"><b>Der Weiße Engel</b> · Mileševa, um 1235</div>
+          </div>
+          <p class="note">Ein Engel zeigt den Frauen das <span class="em">leere Grab</span> — der Augenblick der Auferstehung Christi. 1962 reiste dieses Bild im ersten transatlantischen Satellitensignal als Friedensbotschaft um die Welt — später sogar als Gruß der Menschheit ins All.</p>
+        </div>
+        <div>
+          <div class="frame flat">
+            <img src="assets/02-kreuzigung-decani.jpg" alt="Fresko der Kreuzigung Christi im Kloster Visoki Dečani" loading="lazy" referrerpolicy="no-referrer">
+            <div class="fallback"><svg class="gly" viewBox="0 0 24 24" fill="none" stroke="#d7af43" stroke-width="1"><line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="8" x2="19" y2="8"/></svg><span style="color:var(--gold-pale); font-family:var(--display); font-size:21px">Die Kreuzigung</span><small>Visoki Dečani, um 1350</small></div>
+            <div class="cap"><b>Die Kreuzigung Christi</b> · Visoki Dečani, um 1350</div>
+          </div>
+          <p class="note">Christus am Kreuz, umgeben von Trauernden. Zwei kleine Details am Himmel — stilisierte Sonne und Mond — beflügeln bis heute die populäre <span class="em">„UFO"-Legende</span>; kunsthistorisch sind es klassische Symbole von Tag und Nacht.</p>
+        </div>
+      </div>
+      <div class="galfoot" data-reveal style="--d:560">
+        <p class="body" style="max-width:none">Auch andernorts steht Christus im Mittelpunkt: in <span class="gold">Studenica</span> die berühmte Kreuzigung (um 1209) auf tiefblauem Lapislazuli-Grund — einer Farbe, die damals wertvoller war als Gold; in <span class="gold">Sopoćani</span> das „Entschlafen der Gottesmutter", in dem Christus die Seele Mariens in den Armen hält.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · TEMPLE -->
+  <section class="slide" data-title="Tempel des Hl. Sava">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Belgrad heute</div>
+      <h2 data-reveal style="--d:120">Der Tempel des Heiligen Sava</h2>
+      <p class="body" data-reveal style="--d:240; margin-top:.9em; max-width:none">Genau dort, wo Sava's Reliquien verbrannt wurden, erhebt sich heute eine der größten orthodoxen Kirchen der Welt — inspiriert von der Hagia Sophia. 1935 begonnen, im Inneren erst <span class="gold">2020</span> vollendet. In der gewaltigen Kuppel schwebt die <span class="em">Himmelfahrt Christi</span> — allein die Augen Christi messen rund drei Meter.</p>
+      <div class="temple-grid" data-reveal style="--d:380">
+        <div class="frame">
+          <img src="assets/04-tempel-aussen.jpg" alt="Außenansicht des Tempels des Heiligen Sava in Belgrad" loading="lazy" referrerpolicy="no-referrer">
+          <div class="fallback"><svg class="gly" viewBox="0 0 24 24" fill="none" stroke="#d7af43" stroke-width="1"><path d="M12 2c2 2 3 4 3 6a3 3 0 0 1-6 0c0-2 1-4 3-6zM4 22V11l8-3 8 3v11"/></svg><span style="color:var(--gold-pale); font-family:var(--display); font-size:20px">Hram Svetog Save</span><small>Belgrad, Vračar</small></div>
+          <div class="cap"><b>Außenansicht</b> · weißer Marmor &amp; Granit auf dem Vračar-Plateau</div>
+        </div>
+        <div class="frame">
+          <img src="assets/05-tempel-innen.jpg" alt="Goldene Mosaike im Inneren des Tempels des Heiligen Sava" loading="lazy" referrerpolicy="no-referrer">
+          <div class="fallback"><svg class="gly" viewBox="0 0 24 24" fill="none" stroke="#d7af43" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg><span style="color:var(--gold-pale); font-family:var(--display); font-size:20px">Goldene Mosaike</span><small>Innenraum</small></div>
+          <div class="cap"><b>Innenraum</b> · rund 15.000 m² goldene Mosaike</div>
+        </div>
+      </div>
+      <div class="chips" data-reveal style="--d:560">
+        <div class="chip"><div class="n">15.000 m²</div><div class="l">Mosaikfläche — größte der Christenheit</div></div>
+        <div class="chip"><div class="n">~70 m</div><div class="l">Höhe der Hauptkuppel</div></div>
+        <div class="chip"><div class="n">1935–2020</div><div class="l">Bauzeit bis zur Vollendung</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · LIVED FAITH -->
+  <section class="slide" data-title="Im Jahreskreis">
+    <div class="wrap">
+      <div class="eyebrow" data-reveal>Gelebter Glaube</div>
+      <h2 data-reveal style="--d:120">Christus im Jahreskreis</h2>
+      <p class="lead" data-reveal style="--d:220; margin-top:.5em; font-size:16px">Nicht nur an der Wand — auch im Leben. Drei Säulen serbischer Frömmigkeit.</p>
+      <div class="feasts" data-reveal style="--d:360">
+        <div class="feast" id="easter">
+          <h3>Vaskrs · Ostern</h3>
+          <p>Das höchste Fest des Jahres feiert die Auferstehung Christi. Begrüßung und Antwort hallen durch jede Gemeinde:</p>
+          <div class="greet">„Христос васкрсе!"</div>
+          <button class="reveal-btn" id="easterBtn">Antwort zeigen</button>
+          <div class="answer"><div class="a">„Ваистину васкрсе!"</div><div class="t">„Christus ist auferstanden!" — „Wahrhaftig auferstanden!"</div></div>
+        </div>
+        <div class="feast">
+          <h3>Božić · Weihnachten</h3>
+          <p>Am 7. Januar (julianischer Kalender) wird die Geburt Christi gefeiert. Am Vorabend brennt der <span class="em">badnjak</span>, ein Eichenzweig, vor den Kirchen.</p>
+          <div class="greet">„Христос се роди!"</div>
+          <div class="t" style="font-size:13px; color:var(--muted); font-style:italic; margin-top:8px">Antwort: „Ваистину се роди!" — „Christus ist geboren!" / „Wahrhaftig geboren!"</div>
+        </div>
+        <div class="feast">
+          <h3>Krsna slava</h3>
+          <p>Das einzigartig serbische Familienfest ehrt den Schutzheiligen des Hauses, der die Familie vor Christus vertritt — von der UNESCO als immaterielles Kulturerbe anerkannt.</p>
+          <div class="mtag" style="margin-top:14px">UNESCO-Kulturerbe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · CLOSING -->
+  <section class="slide" data-title="Schluss">
+    <div class="wrap close-wrap">
+      <div class="eyebrow" data-reveal style="justify-content:center">Schluss</div>
+      <h2 data-reveal style="--d:120">Ein Bild, ein roter Faden</h2>
+      <p class="lead" data-reveal style="--d:260">Von der blauen Kreuzigung in Studenica über den weißen Engel am leeren Grab bis zur goldenen Kuppel in Belgrad verbindet das Bild Christi acht Jahrhunderte serbischer Kunst, Geschichte und Frömmigkeit. Ein Engel aus Mileševa wurde sogar zur Friedensbotschaft der Menschheit an den Kosmos.</p>
+      <div class="hvala" data-reveal style="--d:440">Хвала</div>
+      <p class="close-note" data-reveal style="--d:560">Etwas anderes mit „Jesus in Serbien" gemeint? Sag Bescheid — ich passe die Präsentation gerne an. &nbsp;·&nbsp; <a href="#" id="restart" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--line)">Von vorn beginnen</a></p>
+    </div>
+  </section>
+
+</div>
+
+<!-- chrome -->
+<div class="dots" id="dots" aria-hidden="true"></div>
+<div class="chrome">
+  <button class="nav-btn" id="prevBtn" aria-label="Vorherige Folie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div class="counter" id="counter"><b>01</b> / 10</div>
+  <button class="nav-btn" id="nextBtn" aria-label="Nächste Folie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<!-- overview -->
+<div class="overview" id="overview">
+  <div class="ov-head">Übersicht</div>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const dotsWrap = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // build dots
+  slides.forEach((s,i)=>{
+    const d = document.createElement('button');
+    d.className = 'dot'; d.setAttribute('aria-label','Folie '+(i+1)+': '+s.dataset.title);
+    d.addEventListener('click',()=>go(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  // build overview
+  const ovGrid = document.getElementById('ovGrid');
+  const overview = document.getElementById('overview');
+  slides.forEach((s,i)=>{
+    const c = document.createElement('button');
+    c.className='ov-card';
+    c.innerHTML = '<div class="ov-n">'+String(i+1).padStart(2,'0')+'</div><div class="ov-t">'+s.dataset.title+'</div>';
+    c.addEventListener('click',()=>{ go(i); toggleOverview(false); });
+    ovGrid.appendChild(c);
+  });
+
+  function pad(n){return String(n+1).padStart(2,'0');}
+
+  function go(n){
+    n = Math.max(0, Math.min(total-1, n));
+    if(n===idx){ slides[idx].classList.add('active'); return; }
+    slides[idx].classList.remove('active');
+    slides[idx].classList.toggle('prev', n>idx);
+    idx = n;
+    update();
+  }
+  function update(){
+    slides.forEach((s,i)=>{ s.classList.toggle('active', i===idx); if(i!==idx) s.classList.remove('prev'); });
+    progress.style.width = (idx/(total-1)*100)+'%';
+    counter.innerHTML = '<b>'+pad(idx)+'</b> / '+String(total).padStart(2,'0');
+    dots.forEach((d,i)=>d.classList.toggle('on', i===idx));
+    prevBtn.disabled = idx===0; nextBtn.disabled = idx===total-1;
+    // reset transient scroll
+    slides[idx].scrollTop = 0;
+  }
+  const next=()=>go(idx+1), prev=()=>go(idx-1);
+
+  prevBtn.addEventListener('click',prev);
+  nextBtn.addEventListener('click',next);
+  document.getElementById('startBtn').addEventListener('click',next);
+  const restart=document.getElementById('restart');
+  if(restart) restart.addEventListener('click',e=>{e.preventDefault(); go(0);});
+
+  // overview toggle
+  const gridBtn=document.getElementById('gridBtn');
+  function toggleOverview(force){
+    const show = force!==undefined ? force : !overview.classList.contains('show');
+    overview.classList.toggle('show',show);
+  }
+  gridBtn.addEventListener('click',()=>toggleOverview());
+
+  // keyboard
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&!e.shiftKey)){e.preventDefault(); if(overview.classList.contains('show'))return; next();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault(); if(overview.classList.contains('show'))return; prev();}
+    else if(e.key==='Home'){e.preventDefault(); go(0);}
+    else if(e.key==='End'){e.preventDefault(); go(total-1);}
+    else if(e.key.toLowerCase()==='g'){e.preventDefault(); toggleOverview();}
+    else if(e.key==='Escape'){ toggleOverview(false); }
+  });
+
+  // touch swipe (ignore vertical scroll / pinch)
+  let tx=0, ty=0, ttime=0;
+  document.addEventListener('touchstart',e=>{ if(e.touches.length>1)return; tx=e.touches[0].clientX; ty=e.touches[0].clientY; ttime=Date.now(); },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(overview.classList.contains('show'))return;
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty, dt=Date.now()-ttime;
+    if(dt<700 && Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.6){ dx<0?next():prev(); }
+  },{passive:true});
+
+  // ---- image fallback ----
+  document.querySelectorAll('.frame img, .mimg img').forEach(img=>{
+    const fail=()=>{ const f=img.closest('.frame'); if(f) f.classList.add('img-failed'); };
+    img.addEventListener('error',fail);
+    if(img.complete && img.naturalWidth===0) fail();
+  });
+
+  // ---- timeline accordion ----
+  document.querySelectorAll('#timeline .tl-item').forEach(it=>{
+    it.addEventListener('click',()=>{
+      const open=it.classList.contains('open');
+      document.querySelectorAll('#timeline .tl-item').forEach(x=>x.classList.remove('open'));
+      if(!open) it.classList.add('open');
+    });
+  });
+
+  // ---- icon-reading hotspots ----
+  const readCards = document.querySelectorAll('.read-card');
+  const readPick = document.getElementById('readPick');
+  function showRead(key){
+    let found=false;
+    readCards.forEach(c=>{ const on=c.dataset.key===key; c.classList.toggle('on',on); if(on)found=true; });
+    document.querySelectorAll('.hotspot').forEach(h=>h.classList.toggle('on',h.dataset.key===key));
+    if(readPick) readPick.style.display = found?'none':'block';
+  }
+  document.querySelectorAll('.hotspot').forEach(h=>{
+    h.addEventListener('click',()=>showRead(h.dataset.key));
+    h.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); showRead(h.dataset.key);} });
+  });
+
+  // ---- monastery explorer ----
+  const monasteries = {
+    studenica:{title:'Studenica',k:'um 1190 · Stefan Nemanja',img:null,
+      text:'Das „Mutterkloster" aus weißem Marmor — Vorbild aller späteren Gründungen. Seine berühmte <em>Kreuzigung</em> (um 1209) leuchtet auf tiefblauem Lapislazuli-Grund; dieses Blau war damals wertvoller als Gold.',tag:'UNESCO-Welterbe seit 1986'},
+    mileseva:{title:'Mileševa',k:'um 1235 · König Vladislav',img:'assets/01-weisser-engel.jpg',
+      text:'Heimat des weltberühmten <em>Weißen Engels</em>, der den Frauen das leere Grab Christi zeigt — ein Höhepunkt mittelalterlicher Malerei und ein Sinnbild der Auferstehung.',tag:'Fresken von europäischem Rang'},
+    sopocani:{title:'Sopoćani',k:'um 1265 · König Uroš I.',img:null,
+      text:'Sein <em>Entschlafen der Gottesmutter</em> — in dem Christus die Seele Mariens als Kind in den Armen hält — gilt vielen als Gipfel der byzantinischen Wandmalerei überhaupt.',tag:'UNESCO-Welterbe seit 1979'},
+    decani:{title:'Visoki Dečani',k:'1327–1335 · Stefan Dečanski',img:'assets/02-kreuzigung-decani.jpg',
+      text:'Die Klosterkirche ist <em>Christus Pantokrator</em> geweiht und bewahrt das größte erhaltene Freskenprogramm der byzantinischen Welt — ein Zusammenspiel westlicher und östlicher Kunst.',tag:'UNESCO-Welterbe'},
+    zica:{title:'Žiča',k:'frühes 13. Jh. · Stefan d. Erstgekrönte',img:null,
+      text:'Die rot getünchte Krönungskirche der serbischen Könige — und Sitz des ersten Erzbischofs Sava, an dem 1219 die unabhängige serbische Kirche begründet wurde.',tag:'Wiege der serbischen Kirche'},
+    gracanica:{title:'Gračanica',k:'um 1321 · König Milutin',img:null,
+      text:'Ein Meisterwerk spätbyzantinischer Architektur mit kühn gestaffelten Kuppeln — von Dichtern besungen und reich mit Christus- und Heiligenfresken geschmückt.',tag:'UNESCO-Welterbe'}
+  };
+  const monoText = document.getElementById('monoText');
+  const monoImg = document.getElementById('monoImg');
+  const monoCards = document.querySelectorAll('#monoGrid .mcard');
+  function showMono(id){
+    const m = monasteries[id]; if(!m) return;
+    monoCards.forEach(c=>c.classList.toggle('on',c.dataset.id===id));
+    monoText.innerHTML = '<div class="k">'+m.k+'</div><h3>'+m.title+'</h3><p>'+m.text+'</p><div class="mtag">'+m.tag+'</div>';
+    // image or motif
+    if(m.img){
+      monoImg.innerHTML = '<img src="'+m.img+'" alt="Fresko aus dem Kloster '+m.title+'" loading="lazy" referrerpolicy="no-referrer"><div class="fb" style="display:none"></div>';
+      const im = monoImg.querySelector('img');
+      im.addEventListener('error',()=>{ monoImg.innerHTML = motif(); });
+    } else {
+      monoImg.innerHTML = motif();
+    }
+  }
+  function motif(){
+    return '<div class="fb" style="display:grid; place-items:center; gap:10px">'+
+      '<svg width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#9a7d3a" stroke-width="1"><path d="M12 2c2 2 3.2 4 3.2 6A3.2 3.2 0 0 1 8.8 8c0-2 1.2-4 3.2-6z"/><path d="M4 22V11l8-3 8 3v11M9 22v-6h6v6"/></svg>'+
+      '<span style="font-family:var(--display); color:var(--gold-pale); font-size:18px">Serbisch-orthodoxes Kloster</span></div>';
+  }
+  monoCards.forEach(c=>c.addEventListener('click',()=>showMono(c.dataset.id)));
+  showMono('studenica');
+
+  // ---- easter reveal ----
+  const easterBtn = document.getElementById('easterBtn');
+  if(easterBtn) easterBtn.addEventListener('click',()=>document.getElementById('easter').classList.add('revealed'));
+
+  // ---- build hero rays ----
+  const rayset = document.getElementById('rayset');
+  if(rayset){
+    let html='';
+    for(let i=0;i<48;i++){
+      const a=(i/48)*Math.PI*2, x1=200+Math.cos(a)*128, y1=200+Math.sin(a)*128, x2=200+Math.cos(a)*(155+(i%3)*14), y2=200+Math.sin(a)*(155+(i%3)*14);
+      html+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'"/>';
+    }
+    rayset.innerHTML=html;
+  }
+
+  update();
+})();
+</script>
+</body>
+</html>
